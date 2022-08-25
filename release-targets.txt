@@ -1,6 +1,6 @@
 .github
 src
-releaserc.json
+.releaserc.json
 CHANGELOG.md
 CODEOWNERS
 CONTRIBUTING.md

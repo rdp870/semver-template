@@ -33,7 +33,7 @@
 #           node-version: 16
       
 #       # Need to install the plugins that aren't bundled.
-#       - name: Install Plugins for Semnatic Release
+#       - name: Install Plugins for Semantic Release
 #         run: npm install conventional-changelog-conventionalcommits @semantic-release/exec @semantic-release/changelog @semantic-release/git
 
 #       # Have to Update the file so it can be executed in ci, not sure if this is because I created it on a Windows Machine or not.
