@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Run this to change githook config directory to a custom location handled by VCS:
+# git config core.hooksPath .githooks
+
+# If you have trouble, try making sure the file is marked as executable:
+# chmod +x <filename>
+
+if [ -z "$1" ]; then
+	echo "Missing argument (commit message). Did you try to run this manually?"
+	exit 1
+fi
+
+commitTitle="$(cat $1 | head -n1)"
+
+# ignore merge requests
+if echo "$commitTitle" | grep -qE "^Merge branch \'"; then
+	echo "Commit hook: ignoring branch merge"
+	exit 0
+fi
+
+# check semantic versioning scheme
+if ! echo "$commitTitle" | grep -qE '^(?:|feat|fix|docs|style|refactor|perf|test|chore|ci)\(?(?:\w+|\s|\-|_)?\)?:\s\w+'; then
+	echo "Your commit message did not follow semantic versioning: $commitTitle. Add one of the following types to the message: feat|fix|docs|style|refactor|perf|test|chore|ci"
+	echo "Please see https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commit-message-format"
+	exit 1
+fi

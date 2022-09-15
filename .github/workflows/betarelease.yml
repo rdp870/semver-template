@@ -3,7 +3,7 @@ name: BetaRelease
 on:
   push:
     branches:
-      - "beta"
+      - "develop"
 
 jobs:
   release:
